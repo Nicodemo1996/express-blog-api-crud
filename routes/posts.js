@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const postsController = require('../controllers/postsController');
 
-// Rotte
-router.get('/', postsController.index);
-router.get('/:id', postsController.show);
+// POST → crea un nuovo post
+router.post('/', postsController.store);
+
+// PATCH → aggiorna un post esistente
+router.patch('/:id', postsController.update);
 
 module.exports = router;

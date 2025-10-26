@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const postsRouter = require('./routes/posts');
 
-// Middleware per leggere il JSON
+// Middleware per leggere JSON (body-parser integrato)
 app.use(express.json());
 
-// Importo le rotte
-const postsRouter = require('./routes/posts');
+// Rotte principali
 app.use('/posts', postsRouter);
 
-// Avvio del server
-app.listen(port, () => {
-  console.log(`✅ Server avviato su http://localhost:${port}`);
+// Rotta di benvenuto
+app.get('/', (req, res) => {
+  res.send('✅ API Blog pronta!');
+});
+
+app.listen(3000, () => {
+  console.log('🚀 Server in ascolto su http://localhost:3000');
 });
